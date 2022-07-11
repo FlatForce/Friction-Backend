@@ -8,7 +8,7 @@ jobs:
       - checkout
       - aws-credentials-setup
       - run: |
-          echo $PIPELINE_ROLE_ARN
+          aws lambda list-functions
 
 commands: 
   aws-credentials-setup:
@@ -16,14 +16,14 @@ commands:
     parameters:
       role-arn:
         type: string
-        default: PIPELINE_ROLE_ARN
+        default: $PIPELINE_ROLE_ARN
     steps:
       - checkout
       - aws-cli/setup:
           profile-name: circleci
-          aws-access-key-id: AWS_ACCESS_KEY
-          aws-secret-access-key: AWS_ACCESS_SECRET
-          aws-region: AWS_REGION
+          aws-access-key-id: $AWS_ACCESS_KEY
+          aws-secret-access-key: $AWS_ACCESS_SECRET
+          aws-region: $AWS_REGION
       - aws-cli/role-arn-setup:
           profile-name: friction-pipeline
           role-arn: << parameters.role-arn >>
