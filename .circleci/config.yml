@@ -13,16 +13,12 @@ jobs:
 
 commands: 
   aws-credentials-setup:
-    parameters:
-      role-arn:
-        type: string
-        default: $PIPELINE_ROLE_ARN
     steps:
       - checkout
       - run: |
           read -r AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN \<<< \
             $(aws sts assume-role-with-web-identity \
-            --role-arn "<< parameters.role-arn >>" \
+            --role-arn $PIPELINE_ROLE_ARN \
             --role-session-name "CircleCI-${CIRCLE_WORKFLOW_ID}-${CIRCLE_JOB}" \
             --web-identity-token $CIRCLE_OIDC_TOKEN \
             --duration-seconds 3600 \
