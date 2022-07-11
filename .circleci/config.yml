@@ -8,7 +8,7 @@ jobs:
       - checkout
       - aws-credentials-setup
       - run: |
-          aws lambda list-functions
+          echo PIPELINE_ROLE_ARN
 
 commands: 
   aws-credentials-setup:
@@ -16,7 +16,7 @@ commands:
     parameters:
       role-arn:
         type: string
-        default: "${PIPELINE_ROLE_ARN}"
+        default: PIPELINE_ROLE_ARN
     steps:
       - checkout
       - aws-cli/setup:
