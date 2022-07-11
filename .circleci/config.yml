@@ -21,9 +21,9 @@ commands:
       - checkout
       - aws-cli/setup:
           profile-name: circleci
-          aws-access-key-id: $AWS_ACCESS_KEY
-          aws-secret-access-key: $AWS_ACCESS_SECRET
-          aws-region: $AWS_REGION
+          aws-access-key-id: AWS_ACCESS_KEY
+          aws-secret-access-key: AWS_ACCESS_SECRET
+          aws-region: AWS_REGION
       - aws-cli/role-arn-setup:
           profile-name: friction-pipeline
           role-arn: << parameters.role-arn >>
