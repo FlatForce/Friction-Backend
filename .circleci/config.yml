@@ -8,7 +8,7 @@ jobs:
       - checkout
       - aws-credentials-setup
       - run: |
-          echo PIPELINE_ROLE_ARN
+          echo $PIPELINE_ROLE_ARN
 
 commands: 
   aws-credentials-setup:
