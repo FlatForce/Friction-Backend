@@ -8,7 +8,7 @@ jobs:
       - aws-cli/setup:
           aws-access-key-id: AWS_ACCESS_KEY
           aws-secret-access-key: AWS_ACCESS_SECRET
-          aws-region: "us-east-2"
+          aws-region: AWS_REGION
 workflows:
   aws-cli:
     jobs:
