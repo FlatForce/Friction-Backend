@@ -16,7 +16,7 @@ commands:
     parameters:
       role-arn:
         type: string
-        default: PIPELINE_ROLE_ARN
+        default: "${PIPELINE_ROLE_ARN}"
     steps:
       - checkout
       - aws-cli/setup:
