@@ -8,7 +8,7 @@ jobs:
       - checkout
       - aws-credentials-setup
       - run: |
-        aws configure list
+          aws configure list
 commands: 
   aws-credentials-setup:
     # executor: aws-cli/default
