@@ -1,4 +1,4 @@
-version: '2.1'
+version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@2.0
 jobs:
@@ -9,6 +9,24 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY
           aws-secret-access-key: AWS_ACCESS_SECRET
           aws-region: AWS_REGION
+  configure-role-arn:
+    executor: aws-cli/default
+    steps:
+      - checkout
+      - aws-cli/setup:
+          profile-name: circleci
+          aws-access-key-id: AWS_ACCESS_KEY
+          aws-secret-access-key: AWS_ACCESS_SECRET
+          aws-region: AWS_REGION
+      - aws-cli/role-arn-setup:
+          profile-name: friction-pipeline
+          role-arn: PIPELINE_ROLE_ARN
+          source-profile: circleci
+      - run: >-
+          aws sts assume-role --role-arn
+          PIPELINE_ROLE_ARN --role-session-name
+          FrictionBackend-Session
+
 workflows:
   aws-cli:
     jobs:
