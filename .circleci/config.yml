@@ -27,6 +27,8 @@ commands:
           profile-name: friction-pipeline
           role-arn: << parameters.role-arn >>
           source-profile: circleci
+      - run: |
+          aws configure list
 workflows:
   aws-cli:
     jobs:
