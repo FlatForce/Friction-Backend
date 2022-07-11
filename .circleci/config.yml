@@ -5,8 +5,8 @@ jobs:
     docker:
       - image: amazon/aws-cli
     environment:
-      AWS_DEFAULT_REGION: AWS_REGION
-      AWS_ROLE_ARN: PIPELINE_ROLE_ARN
+      AWS_DEFAULT_REGION: "${AWS_REGION}"
+      AWS_ROLE_ARN: "${PIPELINE_ROLE_ARN}"
     steps:
       - run:
           name: authenticate-and-interact
