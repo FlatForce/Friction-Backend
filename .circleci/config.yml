@@ -8,8 +8,7 @@ jobs:
       - checkout
       - aws-credentials-setup
       - run: |
-          aws lambda list-functions --profile friction-pipeline
-
+        aws configure list
 commands: 
   aws-credentials-setup:
     # executor: aws-cli/default
