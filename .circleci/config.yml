@@ -12,7 +12,7 @@ jobs:
 
 commands: 
   aws-credentials-setup:
-    executor: aws-cli/default
+    # executor: aws-cli/default
     parameters:
       role-arn:
         type: string
