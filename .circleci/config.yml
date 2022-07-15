@@ -36,4 +36,5 @@ commands:
 workflows:
   aws-cli:
     jobs:
-      - deploy
+      - deploy:
+          context: FlatForce Context
