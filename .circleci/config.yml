@@ -12,7 +12,7 @@ jobs:
       - aws-oidc-setup:
           aws-role-arn: "arn:aws:iam::908315850849:role/friction-pipeline-role"
       - run:
-          aws sts get-caller-identity
+          aws lambda list-functions
           
 
 commands:
