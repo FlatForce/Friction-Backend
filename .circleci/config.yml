@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - run:
-          ls && pwd
+          cd functions && ls && pwd
       - run:
           terraform init -input=false
   get-creds:
