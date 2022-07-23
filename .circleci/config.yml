@@ -12,7 +12,7 @@ jobs:
       - checkout:
           path: ~/functions
       - run:
-          ls && pwd
+          ls
       - run:
           terraform init -input=false
   get-creds:
