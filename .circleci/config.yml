@@ -7,8 +7,8 @@ jobs:
   plan:
     # working_directory: /functions/lambda-template/arch
     executor: aws-cli/default
-    docker: 
-      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+    # docker: 
+    #   - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
     steps:
       - checkout
       - aws-cli/install
