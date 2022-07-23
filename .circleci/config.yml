@@ -4,6 +4,18 @@ orbs:
   aws-cli: circleci/aws-cli@3.0.0
 
 jobs:
+  plan:
+    working_directory: /functions/lambda-template/arch
+    executor: aws-cli/default
+    docker: 
+      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+    steps:
+      - checkout
+      - aws-cli/install
+      - aws-oidc-setup:
+          aws-role-arn: "arn:aws:iam::908315850849:role/friction-pipeline-role"
+      - run:
+          terraform init -input=false
   deploy:
     executor: aws-cli/default
     steps:
