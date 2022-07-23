@@ -11,8 +11,7 @@ jobs:
     steps:
       - checkout
       - run:
-          cd functions/lambda-template/arch && ls && pwd
-      - run:
+          cd functions/lambda-template/arch
           terraform init -input=false
   get-creds:
     executor: aws-cli/default
