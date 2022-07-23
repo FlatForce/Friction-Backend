@@ -12,6 +12,8 @@ jobs:
       - checkout:
           path: ~/functions
       - run:
+          ls && pwd
+      - run:
           terraform init -input=false
   get-creds:
     executor: aws-cli/default
