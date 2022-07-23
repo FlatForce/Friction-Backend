@@ -5,26 +5,20 @@ orbs:
 
 jobs:
   plan:
-    # working_directory: /functions/lambda-template/arch
-    executor: aws-cli/default
-    # docker: 
-    #   - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+    working_directory: /functions/lambda-template/arch
+    docker: 
+      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
     steps:
       - checkout
-      - aws-cli/install
-      - aws-oidc-setup:
-          aws-role-arn: "arn:aws:iam::908315850849:role/friction-pipeline-role"
       - run:
           terraform init -input=false
-  deploy:
+  get-creds:
     executor: aws-cli/default
     steps:
       - checkout
       - aws-cli/install
       - aws-oidc-setup:
           aws-role-arn: "arn:aws:iam::908315850849:role/friction-pipeline-role"
-      - run:
-          aws lambda list-functions
           
 
 commands:
@@ -48,5 +42,7 @@ commands:
 workflows:
   aws-cli:
     jobs:
+      - get-creds:
+          context: FlatForce Context
       - plan:
           context: FlatForce Context
