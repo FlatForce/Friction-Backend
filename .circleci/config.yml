@@ -13,6 +13,11 @@ jobs:
       - run:
           cd functions/lambda-template/arch
           terraform init -input=false
+          terraform plan
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
   get-creds:
     executor: aws-cli/default
     steps:
