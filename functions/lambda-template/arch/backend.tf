@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-    bucket = var.state_bucket
+    bucket = "friction-terraform-state-bucket"
     key    = "lambda_template.tfstate"
-    region = var.region
+    region = "us-east-2"
   }
 }
