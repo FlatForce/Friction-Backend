@@ -13,7 +13,7 @@ jobs:
       - run:
           cd functions/lambda-template/arch
           terraform init -input=false
-          terraform plan
+          terraform plan -out tfplan
       - persist_to_workspace:
           root: .
           paths:
