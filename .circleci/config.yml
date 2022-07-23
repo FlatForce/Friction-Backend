@@ -5,7 +5,7 @@ orbs:
 
 jobs:
   plan:
-    working_directory: /functions/lambda-template/arch
+    # working_directory: /functions/lambda-template/arch
     executor: aws-cli/default
     docker: 
       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
@@ -48,5 +48,5 @@ commands:
 workflows:
   aws-cli:
     jobs:
-      - deploy:
+      - plan:
           context: FlatForce Context
