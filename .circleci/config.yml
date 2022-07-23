@@ -48,5 +48,5 @@ commands:
 workflows:
   aws-cli:
     jobs:
-      - deploy:
+      - plan:
           context: FlatForce Context
