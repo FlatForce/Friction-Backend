@@ -42,7 +42,8 @@ commands:
 workflows:
   aws-cli:
     jobs:
-      - get-creds
+      - get-creds:
+          context: FlatForce Context
       - plan:
           requires:
             - get-creds
