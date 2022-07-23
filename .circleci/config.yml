@@ -11,9 +11,9 @@ jobs:
     steps:
       - checkout
       - run:
-          cd functions/lambda-template/arch
+          # cd functions/lambda-template/arch
           terraform init -input=false
-          terraform plan -out tfapply -var-file terraform.tfvars
+          # terraform plan -out tfapply -var-file terraform.tfvars
       - persist_to_workspace:
           root: .
           paths:
