@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - run:
-          cd functions/lambda-template && ls && pwd
+          cd functions/lambda-template/arch && ls && pwd
       - run:
           terraform init -input=false
   get-creds:
