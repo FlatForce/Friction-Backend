@@ -5,11 +5,12 @@ orbs:
 
 jobs:
   plan:
-    working_directory: /functions/lambda-template/arch
+    working_directory: ~/functions/lambda-template/arch
     docker: 
       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
     steps:
-      - checkout
+      - checkout:
+          path: ~/functions
       - run:
           terraform init -input=false
   get-creds:
