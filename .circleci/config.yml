@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Plan
           command: |
-            cd functions/lambda-template/arch
+            ls
             terraform init -input=false
             terraform plan -input=false -out=tfplan
       - persist_to_workspace:
