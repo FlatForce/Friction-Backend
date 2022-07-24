@@ -11,6 +11,7 @@ jobs:
       - checkout
       - aws-oidc-setup:
           aws-role-arn: "arn:aws:iam::908315850849:role/friction-pipeline-role"
+      - terraform/install
       - run:
           name: Plan
           command: |
