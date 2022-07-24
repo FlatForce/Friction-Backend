@@ -7,7 +7,7 @@ orbs:
 jobs:
   plan:
     machine:
-      image: circleci/classic:latest
+      image: ubuntu-2204:2022.04.2
     steps:
       - aws-cli/install
       - checkout
