@@ -65,5 +65,6 @@ workflows:
       - plan:
           context: FlatForce Context
       - apply:
+          context: FlatForce Context
           requires:
             - plan
