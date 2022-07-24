@@ -6,6 +6,7 @@ orbs:
 
 jobs:
   plan:
+    working_directory: ~/functions/lambda-template/arch
     machine:
       image: ubuntu-2204:2022.04.2
     steps:
