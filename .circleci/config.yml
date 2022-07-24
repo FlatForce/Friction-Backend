@@ -5,11 +5,13 @@ orbs:
 
 jobs:
   plan:
-    # working_directory: C:\Users\flatr\Desktop\Software Dev\Friction-Backend\functions\lambda-template\arch
     docker: 
       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+      - image: cimg/aws:2022.06
     steps:
       - checkout
+      - aws-oidc-setup:
+          aws-role-arn: "arn:aws:iam::908315850849:role/friction-pipeline-role"
       - run:
           name: Plan
           command: |
