@@ -11,7 +11,7 @@ jobs:
     steps:
       - aws-cli/install
       - checkout
-      - get-creds:
+      - aws-oidc-setup:
           aws-role-arn: "arn:aws:iam::908315850849:role/friction-pipeline-role"
       - terraform/install
       - run:
@@ -19,38 +19,14 @@ jobs:
           command: |
             cd functions/lambda-template/arch
             terraform init -input=false
+            terraform plan
       - persist_to_workspace:
           root: .
           paths:
             - .
-  get-creds:
-    executor: aws-cli/default
-    steps:
-      - checkout
-      - aws-cli/install
-      - aws-oidc-setup:
-          aws-role-arn: "arn:aws:iam::908315850849:role/friction-pipeline-role"
-          
 
 commands:
   aws-oidc-setup:
-    description: Setup AWS auth using OIDC token
-    parameters:
-      aws-role-arn:
-        type: string
-    steps:
-      - run:
-          name: Get short-term credentials
-          command: |
-            STS=($(aws sts assume-role-with-web-identity --role-arn << parameters.aws-role-arn >> --role-session-name "${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}" --web-identity-token "${CIRCLE_OIDC_TOKEN}" --duration-seconds 900 --query 'Credentials.[AccessKeyId,SecretAccessKey,SessionToken]' --output text))
-            echo "export AWS_ACCESS_KEY_ID=${STS[0]}" >> $BASH_ENV
-            echo "export AWS_SECRET_ACCESS_KEY=${STS[1]}" >> $BASH_ENV
-            echo "export AWS_SESSION_TOKEN=${STS[2]}" >> $BASH_ENV
-            echo "export AWS_SESSION_TOKEN=default" >> $BASH_ENV
-      - run:
-          name: Verify AWS credentials
-          command: aws sts get-caller-identity
-  get-creds:
     description: Setup AWS auth using OIDC token
     parameters:
       aws-role-arn:
