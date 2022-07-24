@@ -63,6 +63,5 @@ workflows:
       - plan:
           context: FlatForce Context
       - apply:
-          type: approval
           requires:
             - plan
