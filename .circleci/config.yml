@@ -11,7 +11,8 @@ jobs:
       image: ubuntu-2204:2022.04.2
     steps:
       - aws-cli/install
-      - checkout
+      - checkout:
+          path: ~/functions/lambda-template
       - aws-oidc-setup:
           aws-role-arn: "arn:aws:iam::908315850849:role/friction-pipeline-role"
       - terraform/install
