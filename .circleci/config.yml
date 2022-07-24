@@ -19,7 +19,21 @@ jobs:
           command: |
             cd functions/lambda-template/arch
             terraform init -input=false
-            terraform plan -input=false
+            terraform plan -input=false -out=tfplan
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+  apply:
+    machine:
+      image: ubuntu-2204:2022.04.2
+    steps:
+      - attach_workspce:
+          at: .
+      - run:
+          name: Apply
+          command: |
+            terraform apply -auto-approve tfplan
       - persist_to_workspace:
           root: .
           paths:
@@ -48,3 +62,7 @@ workflows:
     jobs:
       - plan:
           context: FlatForce Context
+      - apply:
+          type: approval
+          requires:
+            - plan
