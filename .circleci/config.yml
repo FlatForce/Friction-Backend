@@ -50,8 +50,6 @@ commands:
       - run:
           name: Verify AWS credentials
           command: aws sts get-caller-identity
-
-commands:
   get-creds:
     description: Setup AWS auth using OIDC token
     parameters:
