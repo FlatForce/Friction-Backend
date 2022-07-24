@@ -28,7 +28,7 @@ jobs:
     machine:
       image: ubuntu-2204:2022.04.2
     steps:
-      - attach_workspce:
+      - attach_workspace:
           at: .
       - run:
           name: Apply
