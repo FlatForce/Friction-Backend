@@ -15,6 +15,7 @@ resource "aws_iam_role" "lambda_role" {
 }
 
 resource "aws_lambda_function" "test_lambda" {
+  depends_on = [data.archive_file.python_lambda_package]
   # If the file is not in the current working directory you will need to include a 
   # path.module in the filename.
   filename      = "lambda.zip"
