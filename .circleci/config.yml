@@ -7,8 +7,8 @@ jobs:
   plan:
     docker: 
       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
-      - image: cimg/aws:2022.06
     steps:
+      - aws-cli/install
       - checkout
       - aws-oidc-setup:
           aws-role-arn: "arn:aws:iam::908315850849:role/friction-pipeline-role"
@@ -44,6 +44,7 @@ commands:
             echo "export AWS_ACCESS_KEY_ID=${STS[0]}" >> $BASH_ENV
             echo "export AWS_SECRET_ACCESS_KEY=${STS[1]}" >> $BASH_ENV
             echo "export AWS_SESSION_TOKEN=${STS[2]}" >> $BASH_ENV
+            echo "export AWS_SESSION_TOKEN=default" >> $BASH_ENV
       - run:
           name: Verify AWS credentials
           command: aws sts get-caller-identity
@@ -51,8 +52,5 @@ commands:
 workflows:
   aws-cli:
     jobs:
-      - get-creds:
-          context: FlatForce Context
       - plan:
-          requires:
-            - get-creds
+          context: FlatForce Context
