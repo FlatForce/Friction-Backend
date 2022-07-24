@@ -6,20 +6,18 @@ orbs:
 
 jobs:
   plan:
-    working_directory: ~/functions/lambda-template/arch
     machine:
       image: ubuntu-2204:2022.04.2
     steps:
       - aws-cli/install
-      - checkout:
-          path: ~/functions/lambda-template
+      - checkout
       - aws-oidc-setup:
           aws-role-arn: "arn:aws:iam::908315850849:role/friction-pipeline-role"
       - terraform/install
       - run:
           name: Plan
           command: |
-            ls
+            cd functions/lambda-template/arch
             terraform init -input=false
             terraform plan -input=false -out=tfplan
       - persist_to_workspace:
@@ -35,6 +33,7 @@ jobs:
       - run:
           name: Apply
           command: |
+            cd functions/lambda-template/arch
             terraform apply -auto-approve tfplan
       - persist_to_workspace:
           root: .
