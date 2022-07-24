@@ -8,11 +8,5 @@ terraform {
 }
 
 provider "aws" {
-  region = var.region
-
-  assume_role {
-    role_arn     = var.role_arn
-    session_name = "Friction Terraform"
-  }
+  region = "us-east-2"
 }
-
