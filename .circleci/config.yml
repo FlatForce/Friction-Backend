@@ -20,16 +20,16 @@ jobs:
             cd functions/lambda-template/arch
             terraform init -input=false
             terraform plan -input=false -out=tfplan
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
+            
   apply:
     machine:
       image: ubuntu-2204:2022.04.2
     steps:
       - attach_workspace:
           at: .
+      - aws-cli/install
+      - aws-oidc-setup:
+          aws-role-arn: "arn:aws:iam::908315850849:role/friction-pipeline-role"
       - terraform/install
       - run:
           name: Apply
