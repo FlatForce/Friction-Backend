@@ -6,6 +6,8 @@ orbs:
 
 jobs:
   plan:
+    machine:
+      image: circleci/classic:latest
     steps:
       - aws-cli/install
       - checkout
