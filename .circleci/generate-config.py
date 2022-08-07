@@ -15,7 +15,7 @@ def write_pipelines():
         config["jobs"].update((add_apply(function)))
         config["workflows"].update((add_workflow(function)))
         
-    # config = collections.OrderedDict(config)
+    # config = collections.OrderedDict(config))
     print(dump(config))
 
 def add_plan(name):
