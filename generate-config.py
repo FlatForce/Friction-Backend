@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 from yaml import dump
 
@@ -90,21 +92,23 @@ def add_apply(name):
     
 def add_workflow(name):
     return {
-        f"{name}": [
-            {
-                f"plan-{name}": {
-                    "context": "FlatForce Context"
+        f"{name}": {
+            "jobs": [
+                {
+                    f"plan-{name}": {
+                        "context": "FlatForce Context"
+                    }
+                },
+                {
+                    f"apply-{name}": {
+                        "context": "FlatForce Context",
+                        "requires": [
+                            f"plan-{name}"
+                        ]
+                    }
                 }
-            },
-            {
-                f"apply-{name}": {
-                    "context": "FlatForce Context",
-                    "requires": [
-                        f"plan-{name}"
-                    ]
-                }
-            }
-        ]   
+            ]   
+        }
     }
     
 def base_config():
