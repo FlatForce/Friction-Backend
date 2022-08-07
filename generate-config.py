@@ -23,17 +23,12 @@ def write_pipelines():
 def add_plan(name):
     return {
         f"plan-{name}": {
-            "working_directory": "/tmp/test",
             "machine": {
                 "image": "ubuntu-2204:2022.04.2"
             },
             "steps": [
                 "aws-cli/install",
-                {
-                    "checkout": {
-                        "path": "/tmp"
-                    }
-                },
+                # "checkout",
                 {
                     "aws-oidc-setup": {
                         "aws-role-arn": "arn:aws:iam::908315850849:role/friction-pipeline-role"
@@ -61,7 +56,6 @@ def add_plan(name):
 def add_apply(name):    
     return {
         f"apply-{name}": {
-            "working_directory": "/tmp",
             "machine": {
                 "image": "ubuntu-2204:2022.04.2"
             },
