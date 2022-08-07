@@ -23,6 +23,7 @@ def write_pipelines():
 def add_plan(name):
     return {
         f"plan-{name}": {
+            "working_directory": "/tmp",
             "machine": {
                 "image": "ubuntu-2204:2022.04.2"
             },
@@ -56,6 +57,7 @@ def add_plan(name):
 def add_apply(name):    
     return {
         f"apply-{name}": {
+            "working_directory": "/tmp",
             "machine": {
                 "image": "ubuntu-2204:2022.04.2"
             },
