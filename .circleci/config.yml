@@ -27,10 +27,10 @@ jobs:
 workflows:
   set-up:
     jobs:
-      - set-up
+      - setup
       - continuation/continue:
           requires:
-            - set-up
+            - setup
           pre-steps:
             - attach_workspace:
                 at: .
