@@ -4,7 +4,7 @@ import os
 from yaml import dump
 
 
-function_list = [ f.name for f in os.scandir("functions") if f.is_dir() ]
+function_list = [ f.name for f in os.scandir("../functions") if f.is_dir() ]
 
 def write_pipelines():
     config = base_config()
